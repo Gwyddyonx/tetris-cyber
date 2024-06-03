@@ -37,7 +37,34 @@ class Map {
             this.map[newX][newY] = 1
 
         });
-        let asd= 0/0
+
+        this.clearFullLines()
+
+    }
+
+    clearFullLines() {
+        for (let iY = this.maxY; iY > 0; iY--) {
+            let isLineFull = true
+            for (let iX = 0; iX <= this.maxX; iX++) {
+                if (this.map[iX][iY] == 0) {
+                    isLineFull = false
+                    break;
+                }
+            }
+
+            // Is a full line!, move the map
+            if (isLineFull) {
+
+                for (let iiY = iY; iiY > 0 ; iiY--) {
+                    for (let iiX = 0; iiX <= this.maxX; iiX++) {
+                        this.map[iiX][iiY] = (iiY == 0) ? 0: this.map[iiX][iiY - 1]
+                    }
+                }
+
+                iY++
+            }
+
+        }
 
     }
 }
