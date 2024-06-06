@@ -54,6 +54,7 @@ class Map {
 
             // Is a full line!, move the map
             if (isLineFull) {
+                this.increaseScore()
 
                 for (let iiY = iY; iiY > 0 ; iiY--) {
                     for (let iiX = 0; iiX <= this.maxX; iiX++) {
@@ -65,6 +66,14 @@ class Map {
             }
 
         }
+
+    }
+
+    increaseScore(){
+        let element = document.getElementById('score')
+        let value = element.innerHTML
+
+        element.innerHTML = Number(value)+1
 
     }
 }

@@ -14,6 +14,14 @@ class Game {
 
         this.directionInput = new DirectionInput()
         this.directionInput.init()
+        
+        this.sfx = {
+            backgroundMusic: new Howl({
+                src:'assets/Tetris.mp3',
+                loop: 'true'
+            })
+        }
+
     }
 
     gameLoop() {
@@ -150,8 +158,15 @@ class Game {
     }
 
     init() {
-        console.log("init")
+        
+        this.setMusic()
         this.gameLoop()
+        
+    }
+
+    setMusic(){
+        this.sfx.backgroundMusic.play()
+        this.sfx.backgroundMusic.volume(0.2)
     }
 
     newPiece() {
@@ -168,6 +183,9 @@ class Game {
             console.log(this.map.map)
             if (this.map.map[index][0] === 1) {
                 this.gameOver = true
+                this.sfx.backgroundMusic.stop()
+                const modal_game_over = document.getElementById('gameOverModal')
+                modal_game_over.hidden = true
             }
         }
     }

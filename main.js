@@ -6,7 +6,9 @@ const main = function(){
         element: element
     })
 
-    game.init()
+    game.init();  // Inicia el bucle del juego
+
+
 }
 
 main()

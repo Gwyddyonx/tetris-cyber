@@ -19,7 +19,7 @@ class Sprite {
 
     }
 
-    draw(ctx) {
+    draw(ctx, color) {
 
         /*if (!this.isnextFrameAvailable()) {
             return false
@@ -28,20 +28,27 @@ class Sprite {
         const x = this.piece.x * 48
         const y = this.piece.y * 48
 
-        const [frameX, frameY] = [0, 0]
+        if (this.isLoaded) {
 
-        if(this.isLoaded){
-            /*console.log("draw",this.image,
-            frameX * 48, frameY * 48,
-            48, 48,
-            x, y,
-            48, 48)*/
-            ctx.drawImage(this.image,
-                frameX * 48, frameY * 48,
-                192, 192,
-                x, y,
-                192, 192
-            )
+            let borderWidth = 1;
+            let offset = borderWidth * 1;
+            const cellSize = 48;
+
+            this.piece.hitbox.forEach(element => {
+                let newX = this.piece.x * cellSize + element[0] * cellSize
+                let newY = this.piece.y * cellSize + element[1] * cellSize
+
+                ctx.fillStyle = '#2C3751';
+                ctx.fillRect(newX - borderWidth, newY - borderWidth, cellSize + offset, cellSize + offset);
+                console.log('draw-border',newX - borderWidth, newY - borderWidth, cellSize + offset, cellSize + offset)
+                console.log('draw-piece',newX, newY, cellSize, cellSize)
+
+                ctx.fillStyle = color;
+                ctx.fillRect(newX, newY, cellSize, cellSize);
+
+            });
+
+
         }
 
     }

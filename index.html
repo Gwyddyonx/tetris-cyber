@@ -18,10 +18,23 @@
 
             </canvas>
         </div>
+        <div class="counter-container">
+            
+            <div class="counter">Score: <br><span id="score">0</span></div>
+        </div>
+
+        <div id="gameOverModal" class="modal">
+            <div class="modal-content">
+                <h1>Game Over</h1>
+                <p>Tu puntaje: <span id="finalScore">0000</span></p>
+                <button class="button-retry" onclick="restartGame()">Reintentar</button>
+            </div>
+        </div>
 
     </div>
     
     <script src="/DirectionInput.js"></script>
+    <script src="/howler.js"></script>
     <script src="/Map.js"></script>
     <script src="/Sprite.js"></script>
     <script src="/Piece.js"></script>
